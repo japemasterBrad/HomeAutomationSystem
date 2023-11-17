@@ -1,4 +1,4 @@
-# HomeAutomationSystem
+# Home Automation System
 
 A UI application with backend functinonality to toggle power to IoT devices
 ![image](https://github.com/japemasterBrad/HomeAutomationSystem/assets/40279277/f429268b-1114-47f5-9a04-5f822204d532)
