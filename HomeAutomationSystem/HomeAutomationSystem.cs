@@ -9,7 +9,7 @@ namespace HomeAutomationSystem
 {
   public partial class HomeAutomationSystem : Form
   {
-    NodeService nodeService = new NodeService();
+    //NodeService nodeService = new NodeService();
     public HomeAutomationSystem()
     {
       InitializeComponent();
@@ -26,7 +26,7 @@ namespace HomeAutomationSystem
       Guid nodeId = new Guid("8f978c58-2ea5-4de5-9d2d-6242049a5a71");
       TogglePower(nodeId);
     }
-    
+
     private void speakersLivingRoom_Click(object sender, EventArgs e)
     {
       Guid nodeId = new Guid("16d76e47-0c24-4f1c-a99c-b2c28ed98c5f");
@@ -101,13 +101,12 @@ namespace HomeAutomationSystem
 
     public void TogglePower(Guid id)
     {
-      string resultMessage = string.Empty;
       Guid nodeId = id;
       ToggleSinglePowerInDatabase(nodeId);
-      resultMessage = NodeClient.PowerOnNode(_nodeList, nodeId);
+      string resultMessage = NodeClient.PowerOnNode(_nodeList, nodeId);
       outputConsole.Text = resultMessage;
     }
-    
+
     public void ToggleSinglePowerInDatabase(Guid id)
     {
       if (_nodeList.Where(x => x.Id == id).FirstOrDefault().Powered == true)
@@ -119,6 +118,78 @@ namespace HomeAutomationSystem
     public void ToggleMultiplePowerInDatabase(string component)
     {
       _nodeList.Where(x => x.Component == component).ToList().ForEach(cc => cc.Component = component);
+    }
+
+    private void allLights_Click(object sender, EventArgs e)
+    {
+      string componentName = "Light";
+      List<Guid> idList = GetIds(componentName);
+
+      foreach (var id in idList)
+      {
+        TogglePower(id);
+      }
+
+      ToggleMultiplePowerInDatabase(componentName);
+      outputConsole.Text = $"Toggle all {componentName}s";
+    }
+
+    private void allSpeakers_Click(object sender, EventArgs e)
+    {
+      string componentName = "Speaker";
+      List<Guid> idList = GetIds(componentName);
+
+      foreach (var id in idList)
+      {
+        TogglePower(id);
+      }
+
+      ToggleMultiplePowerInDatabase(componentName);
+      outputConsole.Text = $"Toggle all {componentName}s";
+    }
+
+    private void allTvs_Click(object sender, EventArgs e)
+    {
+      string componentName = "TV";
+      List<Guid> idList = GetIds(componentName);
+
+      foreach (var id in idList)
+      {
+        TogglePower(id);
+      }
+
+      ToggleMultiplePowerInDatabase(componentName);
+      outputConsole.Text = $"Toggle all {componentName}s";
+    }
+
+    private void allPlugSockets_Click(object sender, EventArgs e)
+    {
+      string componentName = "Plug";
+      List<Guid> idList = GetIds(componentName);
+
+      foreach (var id in idList)
+      {
+        TogglePower(id);
+      }
+
+      ToggleMultiplePowerInDatabase(componentName);
+      outputConsole.Text = $"Toggle all {componentName}s";
+    }
+
+    public List<Guid> GetIds(string component)
+    {
+      List<Guid> componentIds = new List<Guid>();
+
+      IEnumerable<Node> ids = from idList in _nodeList
+                              where idList.Component == "Light"
+                              select idList;
+
+      foreach (var item in ids)
+      {
+        TogglePower(item.Id);
+        Console.WriteLine($"{item.Id} is {(item.Powered == false ? "off" : "on")}");
+      }
+      return componentIds;
     }
 
     private List<Node> _nodeList = new List<Node>() // For development, this will move to a database
@@ -237,5 +308,6 @@ namespace HomeAutomationSystem
         Powered = false
       }
     };
+
   }
 }
