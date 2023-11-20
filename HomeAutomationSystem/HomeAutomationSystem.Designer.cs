@@ -62,6 +62,7 @@
       this.allLights.TabIndex = 0;
       this.allLights.Text = "All Lights";
       this.allLights.UseVisualStyleBackColor = true;
+      this.allLights.Click += new System.EventHandler(this.allLights_Click);
       // 
       // allPlugSockets
       // 
@@ -71,6 +72,7 @@
       this.allPlugSockets.TabIndex = 1;
       this.allPlugSockets.Text = "All Plugs Sockets";
       this.allPlugSockets.UseVisualStyleBackColor = true;
+      this.allPlugSockets.Click += new System.EventHandler(this.allPlugSockets_Click);
       // 
       // allSpeakers
       // 
@@ -80,6 +82,7 @@
       this.allSpeakers.TabIndex = 2;
       this.allSpeakers.Text = "All Speakers";
       this.allSpeakers.UseVisualStyleBackColor = true;
+      this.allSpeakers.Click += new System.EventHandler(this.allSpeakers_Click);
       // 
       // allTvs
       // 
@@ -89,6 +92,7 @@
       this.allTvs.TabIndex = 3;
       this.allTvs.Text = "All TVs";
       this.allTvs.UseVisualStyleBackColor = true;
+      this.allTvs.Click += new System.EventHandler(this.allTvs_Click);
       // 
       // bigLightLivingRoom
       // 
@@ -312,7 +316,7 @@
       this.Controls.Add(this.bigLightLivingRoom);
       this.Controls.Add(this.panel1);
       this.Name = "HomeAutomationSystem";
-      this.Text = "Form1";
+      this.Text = "Home Automation System";
       this.panel1.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
